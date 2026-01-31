@@ -1,7 +1,5 @@
 # My Library - Book Management System
 
-Full-stack web application for managing your personal book library.
-
 ## 🚀 Technologies
 - **Backend:** C# ASP.NET Core Web API, Entity Framework Core, SQLite
 - **Frontend:** HTML, CSS, JavaScript
@@ -28,5 +26,3 @@ open index.html
 - Progress dashboard
 - SQLite database persistence
 
-## 👤 Author
-Kiara Karriqi
