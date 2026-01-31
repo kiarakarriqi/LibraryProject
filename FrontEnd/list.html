@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Books</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="list.css">
+</head>
+<body>
+  <header>
+    <h1>My Library</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="add.html">Add Book</a>
+      <a href="list.html">All Books</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>All Books</h2>
+    <label for="filter-status">Filter by status:</label>
+    <select id="filter-status">
+      <option value="All">All</option>
+      <option value="To Read">To Read</option>
+      <option value="Reading">Reading</option>
+      <option value="Finished">Finished</option>
+    </select>
+
+    <table id="books-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

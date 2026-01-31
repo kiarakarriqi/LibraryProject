@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <h1>My Library</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="add.html">Add Book</a>
+      <a href="list.html">All Books</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="dashboard">
+      <h2>📚 Library Dashboard</h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Books</h3>
+          <p id="total-books">0</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Books Read</h3>
+          <p id="books-read">0</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Reading Progress</h3>
+          <p id="progress">0%</p>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seksioni i ri për librat To Read -->
+      <section class="wishlist">
+        <h3>📖 Wishlist </h3>
+        <ul id="wishlist-list"></ul>
+      </section>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

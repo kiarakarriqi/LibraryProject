@@ -1,0 +1,438 @@
+
+/* Sfond librarie */
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; 
+  color: #3b2f2f;
+  background: url('library-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(60,40,20,0.15);
+  z-index: -1;
+}
+
+
+/* Header */
+header {
+  background-color: rgba(85, 60, 40, 0.9);
+  color: #ffffff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin:0;
+  font-size: 1.8rem;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background-color: rgba(240,220,200,0.3);
+}
+
+
+/* Main content */
+main {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(248,245,240,0.9);
+  border-radius: 12px;
+}
+
+
+/* Dashboard */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: rgba(248,245,240,0.95);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  font-weight: 600;
+}
+
+/* Progress bar */
+/*Kjo është ajo fleta ku shfaqet barra e progresit.*/ 
+.progress-container {
+  width: 100%;
+  background: rgba(200,180,150,0.3);
+  border-radius: 12px;
+  height: 25px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+/*Kjo është pjesa që zgjatet kur rritet progresi.*/
+
+.progress-bar {
+  height: 100%;
+  background-color: #6c4b3e;
+  width: 0%;
+  border-radius: 12px;
+  transition: width 0.5s ease;
+}
+
+.progress-perc {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+/* Formularët */
+form label {
+  display:block;
+  margin-top:10px;
+  font-weight: 500;
+}
+
+form input, form select {
+  padding:10px;
+  width:100%;
+  max-width:400px;
+  margin-top:5px;
+  border:1px solid #b08b68;
+  border-radius:6px;
+  background-color:#fffaf5;
+}
+
+/* Vetëm butoni Add Book */
+button.add-btn {
+  background-color: #8B5E3C; /* kafe */
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+button.add-btn:hover {
+  background-color: #6F4A2B;
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+
+/* Tabela librash */
+table {
+  width:100%;
+  border-collapse: separate;
+  border-spacing: 0 5px; /* pak hapësirë midis rreshtave */
+  margin-top:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding:12px;
+  text-align:left;
+  font-family: inherit;
+}
+
+th {
+  background-color:#6d4c41;
+  color:#f8f5f0;
+  font-weight:600;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(240,220,200,0.4);
+}
+
+tr:hover {
+  background-color: rgba(210,180,150,0.6);
+}
+
+/* Ngjyra sipas statusit  */
+td.status-ToRead { 
+  color: #a86524;  /* kafe e artë e ngrohtë */
+  font-weight: 600;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+td.status-Reading { 
+  color: #406a91;  /* blu e butë librarie */
+  font-weight: 600;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+td.status-Finished { 
+  color: #2f7a4d;  /* jeshile ulliri e qetë */
+  font-weight: 600;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/* Butonat Edit / Delete */
+button.edit-btn {
+  background-color: #b48a65;  /* kafe e butë */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button.edit-btn:hover {
+  background-color: #9c724f; /* pak më e errët */
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+button.delete-btn {
+  background-color: #7b3f00; /* kafe e errët me nuancë tullë */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button.delete-btn:hover {
+  background-color: #5c2d00; /* më e thellë në hover */
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+/* Responsive */
+@media(max-width:600px){
+  .stats-grid { grid-template-columns: 1fr; }
+  nav a { margin-left: 10px; padding:5px 8px; font-size:0.9rem; }
+}
+/* Wishlist Section */
+.wishlist {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.wishlist h3 {
+  color: #4b2e05;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #c4a484;
+  padding-bottom: 5px;
+}
+
+#wishlist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#wishlist-list li {
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: rgba(210,180,150,0.3);
+  font-weight: 500;
+}
+/* ===============================
+   Edit Modal Styles
+   =============================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+#edit-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+#edit-form input,
+#edit-form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-btn,
+.cancel-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #da190b;
+}
+
+/* ===============================
+   Toast Notifications
+   =============================== */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideIn 0.3s ease-out forwards;
+  opacity: 1;
+}
+
+.toast.success {
+  background-color: #4CAF50;
+}
+
+.toast.error {
+  background-color: #f44336;
+}
+
+.toast.warning {
+  background-color: #ff9800;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 1;
+  }
+}
+
+/* Toast close button */
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 250px;
+}
+
+.toast-close {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  line-height: 1;
+  padding-left: 10px;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
