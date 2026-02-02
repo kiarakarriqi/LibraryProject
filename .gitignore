@@ -1,7 +1,8 @@
-# Database files
-*.db
+# SQLite temporary files (excluded)
 *.db-shm
 *.db-wal
+
+# NOTE: library.db is intentionally included for demo/grading purposes
 
 # .NET
 bin/

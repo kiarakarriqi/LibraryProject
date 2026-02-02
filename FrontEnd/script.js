@@ -50,11 +50,11 @@ async function addBookAPI(book) {
 
 async function updateBookAPI(id, book) {
   try {
-    book.userId = getCurrentUserId();
-    var res = await fetch(BOOKS_API_URL + '/' + id, {
+    var userId = getCurrentUserId();
+    var res = await fetch(BOOKS_API_URL + '/' + id + '/' + userId, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(book)
+      body: JSON.stringify({ Title: book.title, Author: book.author, Status: book.status })
     });
     if (!res.ok) throw new Error('Failed to update book');
   } catch (err) {
@@ -64,7 +64,8 @@ async function updateBookAPI(id, book) {
 
 async function deleteBookAPI(id) {
   try {
-    var res = await fetch(BOOKS_API_URL + '/' + id + '/' + getCurrentUserId(), { method: 'DELETE' });
+    var userId = getCurrentUserId();
+    var res = await fetch(BOOKS_API_URL + '/' + id + '/' + userId, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete book');
   } catch (err) {
     console.error('deleteBookAPI error:', err);

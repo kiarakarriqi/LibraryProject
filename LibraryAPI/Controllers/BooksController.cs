@@ -16,7 +16,7 @@ namespace LibraryAPI.Controllers
             _context = context;
         }
 
-        // GET te gjitha librat nga te gjitha usera
+        // GET te gjitha librat
         [HttpGet]
         public async Task<IActionResult> GetAllBooks()
         {
@@ -32,35 +32,46 @@ namespace LibraryAPI.Controllers
             return Ok(books);
         }
 
+        // POST - shto liber (duke perdorur DTO)
         [HttpPost]
-        public async Task<IActionResult> Add(Book book)
+        public async Task<IActionResult> Add(CreateBookDto dto)
         {
+            var book = new Book
+            {
+                Title = dto.Title,
+                Author = dto.Author,
+                Status = dto.Status,
+                UserId = dto.UserId
+            };
+
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
             return Ok(book);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Book updatedBook)
+        // PUT - update liber (vetem nese je pronari)
+        [HttpPut("{id}/{userId}")]
+        public async Task<IActionResult> Update(int id, int userId, CreateBookDto dto)
         {
             var book = await _context.Books.FindAsync(id);
             if (book == null) return NotFound();
-            if (book.UserId != updatedBook.UserId) return Unauthorized();
+            if (book.UserId != userId) return Unauthorized("You can only update your own books");
 
-            book.Title = updatedBook.Title;
-            book.Author = updatedBook.Author;
-            book.Status = updatedBook.Status;
+            book.Title = dto.Title;
+            book.Author = dto.Author;
+            book.Status = dto.Status;
 
             await _context.SaveChangesAsync();
             return Ok(book);
         }
 
+        // DELETE - fshin liber (vetem nese je pronari)
         [HttpDelete("{id}/{userId}")]
         public async Task<IActionResult> Delete(int id, int userId)
         {
             var book = await _context.Books.FindAsync(id);
             if (book == null) return NotFound();
-            if (book.UserId != userId) return Unauthorized();
+            if (book.UserId != userId) return Unauthorized("You can only delete your own books");
 
             _context.Books.Remove(book);
             await _context.SaveChangesAsync();
