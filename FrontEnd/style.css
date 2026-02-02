@@ -436,3 +436,22 @@ button.delete-btn:hover {
 .toast-close:hover {
   opacity: 1;
 }
+
+/* Logout Button */
+.logout-btn {
+  background-color: #7b3f00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: 20px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+  background-color: #5c2d00;
+  transform: scale(1.05);
+}

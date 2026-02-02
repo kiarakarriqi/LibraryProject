@@ -1,12 +1,17 @@
 using LibraryAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<LibraryDbContext>(options =>
-    options.UseSqlite("Data Source=library.db"));
+var dbPath = "/Users/kiara/Desktop/LibraryProject/LibraryAPI/library.db";
+Console.WriteLine($"Database path: {dbPath}");
+Console.WriteLine($"Database exists: {File.Exists(dbPath)}");
 
-// Add CORS policy
+builder.Services.AddDbContext<LibraryDbContext>(options =>
+    options.UseSqlite($"Data Source={dbPath}"));
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
@@ -28,17 +33,28 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Enable Swagger in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Use CORS
 app.UseCors("AllowFrontend");
+
+var frontendPath = "/Users/kiara/Desktop/LibraryProject/FrontEnd";
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(frontendPath),
+    RequestPath = ""
+});
 
 app.UseAuthorization();
 app.MapControllers();
+
+app.MapGet("/", async (context) =>
+{
+    context.Response.Redirect("/login.html");
+});
 
 app.Run();

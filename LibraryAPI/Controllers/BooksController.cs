@@ -16,19 +16,20 @@ namespace LibraryAPI.Controllers
             _context = context;
         }
 
+        // GET te gjitha librat nga te gjitha usera
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllBooks()
         {
             var books = await _context.Books.ToListAsync();
             return Ok(books);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        // GET librat per nje user specific
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetByUser(int userId)
         {
-            var book = await _context.Books.FindAsync(id);
-            if (book == null) return NotFound();
-            return Ok(book);
+            var books = await _context.Books.Where(b => b.UserId == userId).ToListAsync();
+            return Ok(books);
         }
 
         [HttpPost]
@@ -44,6 +45,7 @@ namespace LibraryAPI.Controllers
         {
             var book = await _context.Books.FindAsync(id);
             if (book == null) return NotFound();
+            if (book.UserId != updatedBook.UserId) return Unauthorized();
 
             book.Title = updatedBook.Title;
             book.Author = updatedBook.Author;
@@ -53,11 +55,12 @@ namespace LibraryAPI.Controllers
             return Ok(book);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{id}/{userId}")]
+        public async Task<IActionResult> Delete(int id, int userId)
         {
             var book = await _context.Books.FindAsync(id);
             if (book == null) return NotFound();
+            if (book.UserId != userId) return Unauthorized();
 
             _context.Books.Remove(book);
             await _context.SaveChangesAsync();
