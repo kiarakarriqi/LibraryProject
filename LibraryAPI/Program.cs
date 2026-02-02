@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var dbPath = "/Users/kiara/Desktop/LibraryProject/LibraryAPI/library.db";
+// Databaza do jetë në root folder të projektit
+var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "library.db");
 Console.WriteLine($"Database path: {dbPath}");
 Console.WriteLine($"Database exists: {File.Exists(dbPath)}");
 
@@ -41,13 +42,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
-var frontendPath = "/Users/kiara/Desktop/LibraryProject/FrontEnd";
-
-app.UseStaticFiles(new StaticFileOptions
+// Frontend path relative
+var frontendPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "FrontEnd");
+if (Directory.Exists(frontendPath))
 {
-    FileProvider = new PhysicalFileProvider(frontendPath),
-    RequestPath = ""
-});
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(Path.GetFullPath(frontendPath)),
+        RequestPath = ""
+    });
+}
 
 app.UseAuthorization();
 app.MapControllers();
